@@ -1,4 +1,4 @@
-AC_INIT([budgie-desktop-examples], 1, [ikey@solus-project.com], [budgie-desktop-examples], [https://github.com/solus-project/budgie-desktop-examples])
+AC_INIT([budgie-cpupower-applet], 1, [raffaele.fioratto@gmail.com], [budgie-cpupower-applet], [https://github.com//budgie-desktop-examples])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([-Wno-portability no-dist-gzip dist-xz foreign subdir-objects])
 AC_PROG_CC
@@ -19,13 +19,12 @@ PKG_CHECK_MODULES(BUDGIE_PLUGIN,
         budgie-1.0 >= budgie_required_version
 )
 
-# Required only for Vala applets.
-AM_PROG_VALAC([0.28], [], [AC_MSG_ERROR([valac is required to build Vala applets])])
+GLIB_GSETTINGS
 
 AC_CONFIG_FILES([Makefile
-                 c_project/Makefile
-                 python_project/Makefile
-                 vala_project/Makefile])
+                 cpufreqctl/Makefile
+                 applet/Makefile
+                 schemas/Makefile])
 
 AC_OUTPUT
 

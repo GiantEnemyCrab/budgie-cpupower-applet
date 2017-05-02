@@ -1,0 +1,9 @@
+[Plugin]
+Loader=python3
+Module=cpupower
+Name=CpuPower Applet
+Description=Intel CPU Pstates control
+Authors=Raffaele Fioratto
+Copyright=Copyright © 2017 Raffaele Fioratto
+Website=https://solus-project.com
+Icon=cpu-frequency-indicator

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<schemalist>
+
+  <schema path="/com/solus-project/budgie-panel/applets/cpupower/" id="com.solus-project.budgie-panel.applets.cpupower">
+
+    <key name='show-freq-in-panel' type='b'>
+      <default>true</default>
+      <summary>Display CPU frequency in the panel</summary>
+      <description>
+        If enabled, the current CPU frequency is displayed in the panel.
+        If disabled, the user can still view the value in the popover by clicking
+        the icon of the applet in the panel.
+      </description>
+    </key>
+
+    <key name='update-frequency' type='i'>
+      <default>3</default>
+      <summary>Time between updates</summary>
+      <description>
+        The amount of time in seconds between two updates of the applet
+      </description>
+    </key>
+
+    <key name='panel-freq-unit-ghz' type='b'>
+      <default>true</default>
+      <summary>Frequency in GHz</summary>
+      <description>
+        Always convert the current frequency in GHz
+      </description>
+    </key>
+
+    <key name='profiles' type='s'>
+      <default>"[(0, 10, False, 'Energy Saver'), (0, 30, False, 'Quiet'), (20, 80, True, 'Multimedia'), (50, 100, True, 'High Performance')]"</default>
+      <summary>Currently available profiles</summary>
+      <description>
+        List of currently available profiles, they are in the format (min_pct, max_pct, tb_enabled, 'name')
+      </description>
+    </key>
+
+    <key name='last-profile' type='i'>
+      <default>3</default>
+      <summary>Last used energy profile</summary>
+      <description>
+        Index within the list of profiles of the last used one
+      </description>
+    </key>
+
+  </schema>
+
+</schemalist>
