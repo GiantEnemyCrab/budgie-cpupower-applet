@@ -208,6 +208,53 @@ class CpuPowerApplet(Budgie.Applet):
             self.tb_switch.set_state(tb_enabled)
             self.settings.set_int('last-profile', index)
 
+    def do_supports_settings(self):
+        return True
+
+    def do_get_settings_ui(self):
+        return SettingsUI(self.settings)
+
+
+class SettingsUI(Gtk.VBox):
+    def __init__(self, settings):
+        Gtk.VBox.__init__(self)
+
+        self.settings = settings
+
+        freq_box = Gtk.HBox()
+
+        self.show_freq = Gtk.Switch.new()
+
+        freq_box.pack_start(Gtk.Label.new('Show frequency in panel'), False, False, 0)
+        freq_box.pack_start(self.show_freq, True, True, 0)
+
+        ghz_box = Gtk.HBox()
+
+        self.use_ghz = Gtk.Switch.new()
+
+        ghz_box.pack_start(Gtk.Label.new('Use GHz'), False, False, 0)
+        ghz_box.pack_start(self.use_ghz, True, True, 0)
+
+        self.pack_start(freq_box, True, True, 3)
+        self.pack_start(ghz_box, True, True, 3)
+
+        self.update_ui()
+
+        self.show_freq.connect_after('notify::active', self.on_switch_activated, 'show-freq-in-panel')
+        self.use_ghz.connect_after('notify::active', self.on_switch_activated, 'panel-freq-unit-ghz')
+
+        self.set_property('margin', 5)
+
+        self.show_all()
+
+
+
+    def update_ui(self):
+        self.show_freq.set_state(self.settings.get_boolean('show-freq-in-panel'))
+        self.use_ghz.set_state(self.settings.get_boolean('panel-freq-unit-ghz'))
+
+    def on_switch_activated(self, widg, active, data=None):
+        self.settings.set_boolean(data, widg.get_state())
 
 
 class CpuPowerProxy():
