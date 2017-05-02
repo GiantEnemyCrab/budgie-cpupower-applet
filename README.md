@@ -3,6 +3,8 @@ Budgie CpuPower Applet
 
 Monitor and manage your Intel CPU PStates from Budgie panel (via intel_pstate kernel module).
 
+The UI design was heavily inspired by the great [Gnome Shell extension equivalent](https://github.com/martin31821/cpupower) (kudos to martin31821).
+
 Building from sources
 ----------------------
 ```bash
