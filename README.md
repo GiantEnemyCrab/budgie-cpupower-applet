@@ -20,3 +20,8 @@ nohup budgie-panel --replace &
 
 Screenshot
 ----------
+Applet embedded in panel with popover displayed:
+
+![alt text][applet]
+
+[applet]: https://raw.githubusercontent.com/ImperiumMaximus/budgie-cpupower-applet/master/screenshots/applet.png
