@@ -21,3 +21,6 @@ stamp-h1
 .libs/
 
 *.gschema.valid
+*.o
+cpufreqctl/cpufreqctl
+
