@@ -1,13 +1,22 @@
-Budgie Desktop Examples
+Budgie CpuPower Applet
 -----------------------
 
-Sample material for constructing extensions/applets for the Budgie Desktop.
+Monitor and manage your Intel CPU PStates from Budgie panel (via intel_pstate kernel module).
 
+Building from sources
+----------------------
+```bash
+sh autogen.sh
+make
+sudo make install
+```
 
+Getting the applet listed on Raven Sidebar
+---------------------
+After installation you can either logout/login to Budgie or issue the following command
+```bash
+nohup budgie-panel --replace &
+```
 
-TODO
------
-
- - [x] Add Python example
- - [x] Add Vala example
- - [ ] Add C example
+Screenshot
+----------
