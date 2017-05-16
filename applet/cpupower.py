@@ -190,6 +190,15 @@ class CpuPowerApplet(Budgie.Applet):
             last_radio = r
             if index == self.settings.get_int('last-profile'):
                 r.set_active(True)
+
+                if self.cpupower_proxy.get_min_perf_pct() != profile[0]:
+                    self.cpupower_proxy.set_min_perf_pct(profile[0])
+
+                if self.cpupower_proxy.get_max_perf_pct() != profile[1]:
+                    self.cpupower_proxy.set_max_perf_pct(profile[1])
+
+                if self.cpupower_proxy.get_tb_state() != profile[2]:
+                    self.cpupower_proxy.set_tb_state(profile[2])
             else:
                 r.set_active(False)
             r.connect_after('toggled', self.profile_changed, index)
