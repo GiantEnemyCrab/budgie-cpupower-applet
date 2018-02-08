@@ -126,6 +126,8 @@ class CpuPowerApplet(Budgie.Applet):
 
         self.tb_switch.connect_after('notify::active', self.on_tb_switch_activated)
 
+        self.freq.set_visible(self.settings.get_boolean('show-freq-in-panel'))
+        self.img.set_visible(self.settings.get_boolean('show-ico-in-panel'))
 
         GObject.timeout_add(self.settings.get_int('update-frequency') * 1000, self.update_ui)
 
