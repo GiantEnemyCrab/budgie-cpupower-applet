@@ -24,6 +24,7 @@ import ast
 import re
 
 
+
 class PyShowDesktop(GObject.GObject, Budgie.Plugin):
     """ This is simply an entry point into your Budgie Applet implementation.
         Note you must always override Object, and implement Plugin.
@@ -68,10 +69,10 @@ class CpuPowerApplet(Budgie.Applet):
         self.button.set_relief(Gtk.ReliefStyle.NONE)
         self.add(self.button)
 
-        img = Gtk.Image.new_from_icon_name("cpu-frequency-indicator", Gtk.IconSize.BUTTON)
+        self.img = Gtk.Image.new_from_icon_name("cpu-frequency-indicator", Gtk.IconSize.BUTTON)
 
         button_box.pack_start(self.freq, False, False, 3)
-        button_box.pack_start(img, False, False, 0)
+        button_box.pack_start(self.img, False, False, 0)
 
         self.button.add(button_box)
         self.show_all()
@@ -177,6 +178,8 @@ class CpuPowerApplet(Budgie.Applet):
     def settings_changed(self, settings, key, data=None):
         if key == 'show-freq-in-panel':
             self.freq.set_visible(self.settings.get_boolean(key))
+        if key == 'show-ico-in-panel':
+            self.img.set_visible(self.settings.get_boolean(key))
 
     def populate_profiles_in_popover(self):
         self.profiles = ast.literal_eval(self.settings.get_string('profiles'))
@@ -230,6 +233,13 @@ class SettingsUI(Gtk.VBox):
 
         self.settings = settings
 
+        ico_box = Gtk.HBox()
+
+        self.show_ico = Gtk.Switch.new()
+
+        ico_box.pack_start(Gtk.Label.new('Show applet icon in panel'), False, False, 0)
+        ico_box.pack_start(self.show_ico, True, True, 0)
+
         freq_box = Gtk.HBox()
 
         self.show_freq = Gtk.Switch.new()
@@ -244,11 +254,13 @@ class SettingsUI(Gtk.VBox):
         ghz_box.pack_start(Gtk.Label.new('Use GHz'), False, False, 0)
         ghz_box.pack_start(self.use_ghz, True, True, 0)
 
+        self.pack_start(ico_box, True, True, 3)
         self.pack_start(freq_box, True, True, 3)
         self.pack_start(ghz_box, True, True, 3)
 
         self.update_ui()
 
+        self.show_ico.connect_after('notify::active', self.on_switch_activated, 'show-ico-in-panel')
         self.show_freq.connect_after('notify::active', self.on_switch_activated, 'show-freq-in-panel')
         self.use_ghz.connect_after('notify::active', self.on_switch_activated, 'panel-freq-unit-ghz')
 
@@ -259,6 +271,7 @@ class SettingsUI(Gtk.VBox):
 
 
     def update_ui(self):
+        self.show_ico.set_state(self.settings.get_boolean('show-ico-in-panel'))
         self.show_freq.set_state(self.settings.get_boolean('show-freq-in-panel'))
         self.use_ghz.set_state(self.settings.get_boolean('panel-freq-unit-ghz'))
 
