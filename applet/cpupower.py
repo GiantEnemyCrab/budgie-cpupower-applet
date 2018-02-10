@@ -76,7 +76,7 @@ class CpuPowerApplet(Budgie.Applet):
         self.button.add(button_box)
         self.show_all()
 
-        self.popover = Gtk.Popover.new(self.button)
+        self.popover = Budgie.Popover.new(self.button)
         popover_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         self.min_freq_label = Gtk.Label.new()
@@ -286,7 +286,7 @@ class CpuPowerProxy():
     def set_tb_state(self, value):
         if self.is_tb_supported():
             v = "1" if value == False else "0"
-            subprocess.call(["/usr/bin/cpufreqctl", "turbo", v])
+            subprocess.call(["pkexec", "/usr/bin/cpufreqctl", "turbo", v])
 
 
     def get_tb_state(self):
@@ -306,7 +306,7 @@ class CpuPowerProxy():
         return int(output)
 
     def set_min_perf_pct(self, value):
-        subprocess.call(["/usr/bin/cpufreqctl", "min", str(int(value))])
+        subprocess.call(["pkexec", "/usr/bin/cpufreqctl", "min", str(int(value))])
 
     def set_max_perf_pct(self, value):
-        subprocess.call(["/usr/bin/cpufreqctl", "max", str(int(value))])
+        subprocess.call(["pkexec", "/usr/bin/cpufreqctl", "max", str(int(value))])

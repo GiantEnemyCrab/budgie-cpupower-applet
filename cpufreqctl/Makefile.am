@@ -4,7 +4,11 @@ cpufreqctl_CFLAGS = -Wall -Wextra -Wconversion -Wsign-conversion -Wformat-securi
 
 cpufreqctl_SOURCES = cpufreqctl.c
 
+policydir = $(datarootdir)/polkit-1/actions
+policy_DATA = polkit/actions/rf.cpupower.policy
+
+rulesdir = $(datarootdir)/polkit-1/rules.d
+rules_DATA = polkit/rules.d/rf.cpupower.rules
+
 install-exec-hook:
-	@echo    "#### Setting SUID for cpufreqctl. ####"
-	chmod 4755 $(DESTDIR)$(bindir)/cpufreqctl
-	@echo    "####------------------------------####"
+	chmod 555 $(DESTDIR)$(bindir)/cpufreqctl
