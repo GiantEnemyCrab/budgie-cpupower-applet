@@ -4,6 +4,14 @@
 
   <schema path="/com/solus-project/budgie-panel/applets/cpupower/" id="com.solus-project.budgie-panel.applets.cpupower">
 
+    <key name='show-ico-in-panel' type='b'>
+      <default>true</default>
+      <summary>Display CPU icon in the panel</summary>
+      <description>
+        If enabled, the CPU icon is displayed in the panel.
+      </description>
+    </key>
+
     <key name='show-freq-in-panel' type='b'>
       <default>true</default>
       <summary>Display CPU frequency in the panel</summary>
