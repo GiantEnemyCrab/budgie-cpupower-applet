@@ -39,7 +39,7 @@
     </key>
 
     <key name='profiles' type='s'>
-      <default>"[(0, 10, False, 'Energy Saver'), (0, 30, False, 'Quiet'), (20, 80, True, 'Multimedia'), (50, 100, True, 'High Performance')]"</default>
+      <default>"[(0, 10, False, 'Energy Saver'), (0, 30, False, 'Quiet'), (20, 63, False, 'Fanless'), (20, 80, True, 'Multimedia'), (50, 100, True, 'High Performance')]"</default>
       <summary>Currently available profiles</summary>
       <description>
         List of currently available profiles, they are in the format (min_pct, max_pct, tb_enabled, 'name')
